@@ -17,6 +17,7 @@ AI와 비즈니스 애플리케이션 강의에서 작업한 작업물 모음입
 https://ai.studio/apps/18d366cd-3948-4f9a-83f1-740f02bf1e61
 # Rubric Detective: PDF 분석 앱
 과제 안내문, 강의계획서, 평가 루브릭, 프로젝트 안내문, 수업 공지와 같은 PDF를 분석하여 학생이 놓치기 쉬운 평가 기준과 감점 위험 요소를 찾아주는 AI 기반 PDF 분석 앱
+
  https://aistudio.google.com/apps/6f0716ba-3707-4944-a5cb-c063399309e2?showPreview=true&showAssistant=true
 # 바이브 코딩 발표자료
 한국어 위키백과 "바이브 코딩" 기사 내용을 바탕으로 만든 HTML 발표자료입니다.
