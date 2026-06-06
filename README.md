@@ -2,7 +2,7 @@
 # AI와 비즈니스 애플리케이션 4팀 팀 작업물 모음
 AI와 비즈니스 애플리케이션 강의에서 작업한 작업물 모음입니다. (팀활동, 개인활동 모두 포함)
 # 이름 추첨 프로그램
-file:///C:/Users/82104/OneDrive/Desktop/AI%EC%99%80%20%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4%20%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98/%EC%9D%B4%EB%A6%84%20%EC%B6%94%EC%B2%A8%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8.html
+
 # 바카라 게임
 
 
@@ -13,11 +13,11 @@ file:///C:/Users/82104/OneDrive/Desktop/AI%EC%99%80%20%EB%B9%84%EC%A6%88%EB%8B%8
 
 
 # No pressure: 발표 긴장 시뮬레이션 앱
-
-
+발표 대본을 입력하면 AI가 교수님 질문, 청중 반응, 발표 중 끊길 수 있는 구간, 지루한 부분, 돌발 상황 을 시뮬레이션하여 실전 발표 연습을 도와주는 앱
+https://ai.studio/apps/18d366cd-3948-4f9a-83f1-740f02bf1e61
 # Rubric Detective: PDF 분석 앱
-
-
+과제 안내문, 강의계획서, 평가 루브릭, 프로젝트 안내문, 수업 공지와 같은 PDF를 분석하여 학생이 놓치기 쉬운 평가 기준과 감점 위험 요소를 찾아주는 AI 기반 PDF 분석 앱
+ https://aistudio.google.com/apps/6f0716ba-3707-4944-a5cb-c063399309e2?showPreview=true&showAssistant=true
 # 바이브 코딩 발표자료
 한국어 위키백과 "바이브 코딩" 기사 내용을 바탕으로 만든 HTML 발표자료입니다.
 
