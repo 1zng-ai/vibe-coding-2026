@@ -9,7 +9,7 @@ https://glowing-rolypoly-ff73ea.netlify.app
 # 하이로우 카드게임
 https://dapper-cupcake-c7b18d.netlify.app
 # 올라마
-https://github.com/1zng-ai/vibe-coding-2026/raw/main/김소영(0507).pptx
+https://github.com/1zng-ai/vibe-coding-2026/raw/main/김소영%20(0507).pptx
 
 # No pressure: 발표 긴장 시뮬레이션 앱
 발표 대본을 입력하면 AI가 교수님 질문, 청중 반응, 발표 중 끊길 수 있는 구간, 지루한 부분, 돌발 상황 을 시뮬레이션하여 실전 발표 연습을 도와주는 앱
