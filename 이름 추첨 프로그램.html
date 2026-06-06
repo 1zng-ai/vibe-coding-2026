@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>이름 추첨 프로그램</title>
+
+<style>
+body{
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
+    margin:0;
+    padding:20px;
+}
+
+h1{text-align:center;}
+
+.lang{text-align:center;margin-bottom:10px;}
+
+.wrap{
+    display:flex;
+    gap:20px;
+    margin-top:20px;
+}
+
+.box{
+    flex:1;
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+}
+
+textarea{
+    width:100%;
+    height:140px;
+    font-size:14px;
+    padding:10px;
+}
+
+button{
+    margin-top:8px;
+    padding:8px 12px;
+    cursor:pointer;
+    border:none;
+    border-radius:6px;
+    background:#22c55e;
+    color:white;
+    font-weight:bold;
+}
+
+.secondary{background:#3b82f6;}
+.danger{background:#ef4444;}
+.gray{background:#64748b;}
+.purple{background:#a855f7;}
+
+select{
+    width:100%;
+    height:220px;
+    margin-top:10px;
+}
+
+.result{
+    font-size:40px;
+    text-align:center;
+    margin-top:15px;
+    color:#22c55e;
+    font-weight:bold;
+    height:50px;
+}
+
+.history{
+    margin-top:20px;
+    background:#020617;
+    padding:10px;
+    border-radius:8px;
+    height:120px;
+    overflow:auto;
+    font-size:14px;
+}
+
+.footer{
+    margin-top:25px;
+    text-align:center;
+    color:#94a3b8;
+    font-size:13px;
+}
+
+canvas{
+    display:block;
+    margin:20px auto;
+    background:#020617;
+    border-radius:50%;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="title">🎲 이름 추첨 프로그램</h1>
+
+<div class="lang">
+<button class="gray" onclick="setLang('ko')">한국어</button>
+<button class="gray" onclick="setLang('en')">English</button>
+<button class="gray" onclick="setLang('zh')">中文</button>
+<button class="gray" onclick="setLang('ja')">日本語</button>
+</div>
+
+<div class="box">
+<textarea id="inputNames" placeholder="Excel 워크시트 복사 또는 직접 입력 가능"></textarea><br>
+<button onclick="loadNames()" id="loadBtn">명단 불러오기</button>
+<button class="danger" onclick="resetAll()" id="resetBtn">초기화</button>
+
+<br><br>
+<span id="pickLabel">추첨 인원 수 :</span>
+<input type="number" id="pickCount" value="1" min="1" style="width:60px;">
+
+<button class="secondary" onclick="draw()" id="drawBtn">추첨</button>
+<button class="danger" onclick="redraw()" id="redrawBtn">재추첨</button>
+<button class="purple" onclick="shuffleAll()">전체 순번 생성</button>
+<button class="purple" onclick="spinRoulette()">룰렛 모드</button>
+
+<div class="result" id="result"></div>
+
+<div class="history" id="history"></div>
+</div>
+
+<canvas id="wheel" width="320" height="320"></canvas>
+
+<div class="wrap">
+
+<div class="box">
+<h3 id="winTitle">🏆 당첨자 명단</h3>
+<select id="winners" multiple></select>
+<button class="secondary" onclick="moveToPool()">→ 추첨대상으로 이동</button>
+</div>
+
+<div class="box">
+<h3 id="poolTitle">🎯 추첨 대상 명단</h3>
+<select id="pool" multiple></select>
+<button class="secondary" onclick="moveToWinners()">→ 당첨자로 이동</button>
+</div>
+
+</div>
+
+<div class="footer">
+작성자 : <b> 김소영 (경영 24) </b>
+</div>
+
+<script>
+
+let pool=[];
+let winners=[];
+let round=1;
+
+function render(){
+let p=document.getElementById("pool");
+let w=document.getElementById("winners");
+p.innerHTML="";
+w.innerHTML="";
+pool.forEach(n=>{
+let o=document.createElement("option");
+o.text=n;
+p.add(o);
+});
+winners.forEach(n=>{
+let o=document.createElement("option");
+o.text=n;
+w.add(o);
+});
+}
+
+function loadNames(){
+let text=document.getElementById("inputNames").value.trim();
+if(!text) return;
+let list=text.split(/\n|\t/).map(v=>v.trim()).filter(v=>v);
+pool=[...new Set([...pool,...list])];
+render();
+}
+
+function addHistory(text){
+let h=document.getElementById("history");
+let time=new Date().toLocaleTimeString();
+h.innerHTML += `${round}회 (${time}) : ${text}<br>`;
+h.scrollTop=h.scrollHeight;
+round++;
+}
+
+function animatePick(list,final){
+let el=document.getElementById("result");
+let i=0;
+let t=setInterval(()=>{
+el.innerText=list[Math.floor(Math.random()*list.length)];
+i++;
+if(i>20){
+clearInterval(t);
+el.innerText=final.join(", ");
+addHistory(final.join(", "));
+}
+},80);
+}
+
+function draw(){
+let count=Number(document.getElementById("pickCount").value);
+if(pool.length===0) return;
+if(count>pool.length) count=pool.length;
+let picked=[];
+for(let i=0;i<count;i++){
+let r=Math.floor(Math.random()*pool.length);
+picked.push(pool.splice(r,1)[0]);
+}
+winners.push(...picked);
+animatePick([...pool,...picked],picked);
+render();
+}
+
+function redraw(){ draw(); }
+
+function shuffleAll(){
+if(pool.length===0) return;
+let arr=[...pool];
+for(let i=arr.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1));
+[arr[i],arr[j]]=[arr[j],arr[i]];
+}
+document.getElementById("result").innerText=arr.map((n,i)=>`${i+1}.${n}`).join(" ");
+addHistory("전체순번 생성");
+}
+
+function moveToWinners(){
+let sel=document.getElementById("pool");
+let s=[...sel.selectedOptions].map(o=>o.text);
+pool=pool.filter(n=>!s.includes(n));
+winners.push(...s);
+render();
+}
+
+function moveToPool(){
+let sel=document.getElementById("winners");
+let s=[...sel.selectedOptions].map(o=>o.text);
+winners=winners.filter(n=>!s.includes(n));
+pool.push(...s);
+render();
+}
+
+function resetAll(){
+pool=[];
+winners=[];
+round=1;
+document.getElementById("result").innerText="";
+document.getElementById("history").innerHTML="";
+render();
+}
+
+/* 룰렛 */
+
+function spinRoulette(){
+if(pool.length===0) return;
+
+let canvas=document.getElementById("wheel");
+let ctx=canvas.getContext("2d");
+
+let angle=0;
+let speed=0.3+Math.random()*0.3;
+let names=[...pool];
+
+function drawWheel(){
+ctx.clearRect(0,0,320,320);
+let arc=(Math.PI*2)/names.length;
+
+names.forEach((n,i)=>{
+ctx.beginPath();
+ctx.moveTo(160,160);
+ctx.fillStyle=`hsl(${i*360/names.length},70%,50%)`;
+ctx.arc(160,160,150,angle+i*arc,angle+(i+1)*arc);
+ctx.fill();
+
+ctx.save();
+ctx.translate(160,160);
+ctx.rotate(angle+i*arc+arc/2);
+ctx.fillStyle="white";
+ctx.fillText(n,80,0);
+ctx.restore();
+});
+}
+
+function anim(){
+angle+=speed;
+speed*=0.985;
+
+drawWheel();
+
+if(speed>0.002){
+requestAnimationFrame(anim);
+}else{
+let arc=(Math.PI*2)/names.length;
+let index=Math.floor((Math.PI*1.5-angle%(Math.PI*2))/arc);
+if(index<0) index+=names.length;
+let winner=names[index];
+document.getElementById("result").innerText=winner;
+addHistory("룰렛 → "+winner);
+}
+}
+
+anim();
+}
+
+render();
+
+</script>
+
+</body>
+</html>
