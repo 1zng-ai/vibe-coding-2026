@@ -8,7 +8,7 @@ https://1zng-ai.github.io/vibe-coding-2026/이름%20추첨%20프로그램.html
 https://glowing-rolypoly-ff73ea.netlify.app
 # 하이로우 카드게임
 https://dapper-cupcake-c7b18d.netlify.app
-# 올라마
+# llamafile 앱 사용법과 Ollama와의 비교
 https://github.com/1zng-ai/vibe-coding-2026/raw/main/김소영%20(0507).pptx
 
 # No pressure: 발표 긴장 시뮬레이션 앱
