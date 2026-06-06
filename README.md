@@ -3,7 +3,7 @@
 AI와 비즈니스 애플리케이션 강의에서 작업한 작업물 모음입니다. (팀활동, 개인활동 모두 포함)
 
 # 이름 추첨 프로그램
-
+https://1zng-ai.github.io/vibe-coding-2026/이름 추첨 프로그램.html
 # 바카라 게임
 https://glowing-rolypoly-ff73ea.netlify.app
 # 하이로우 카드게임
