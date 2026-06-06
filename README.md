@@ -21,4 +21,4 @@ https://ai.studio/apps/18d366cd-3948-4f9a-83f1-740f02bf1e61
  https://aistudio.google.com/apps/6f0716ba-3707-4944-a5cb-c063399309e2?showPreview=true&showAssistant=true
 # 바이브 코딩 발표자료
 한국어 위키백과 "바이브 코딩" 기사 내용을 바탕으로 만든 HTML 발표자료입니다.
-
+index.html
